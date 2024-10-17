@@ -59,10 +59,11 @@ resource "azurerm_cognitive_account" "cognitive_account" {
     for_each = try(length(local.cognitive_account.identity), 0) > 0 ? [local.cognitive_account.identity] : []
 
     content {
-      type         = identity.value.type
-      identity_ids = identity.value.identity_ids
+      type         = identity.value.type         #When type is set to SystemAssigned, the identity of the Principal ID can be retrieved after the container group has been created
+      identity_ids = identity.value.identity_ids #This is required when type is set to UserAssigned or SystemAssigned, UserAssigned.
 
     }
   }
 
+  depends_on = [azurerm_key_vault_key.cognitive_account_key_vault_key]
 }

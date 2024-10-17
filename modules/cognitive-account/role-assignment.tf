@@ -5,4 +5,3 @@ module "cognitive_role_assignment" {
   settings   = each.value
   depends_on = [azurerm_cognitive_account.cognitive_account]
 }
-

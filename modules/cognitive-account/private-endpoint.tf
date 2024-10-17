@@ -20,6 +20,3 @@ module "cognitive_account_private_endpoint" {
   settings                       = each.value
   depends_on                     = [azurerm_cognitive_account.cognitive_account]
 }
-
-
-  
